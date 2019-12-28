@@ -14,6 +14,19 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+    
+    func getPrice(){
+        if let url = URL(string: "https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,JPY,EUR"){
+            URLSession.shared.dataTask(with: url) { (data, response, error) in
+                if let data = data{
+                    print("It worked!")
+                }
+                else{
+                    print("Failed!")
+                }
+            }.resume()
+        }
+    }
 
 
 }
