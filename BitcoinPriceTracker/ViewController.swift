@@ -29,9 +29,19 @@ class ViewController: UIViewController {
                 if let data = data{
                     if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String:Double]{
                         DispatchQueue.main.async {
-                            self.usdLabel.text = "$\(json["USD"]!)"
-                            self.eurLabel.text = "$\(json["EUR"]!)"
-                            self.jpyLabel.text = "$\(json["JPY"]!)"
+                            let formatter = NumberFormatter()
+                            formatter.numberStyle = .currency
+                            formatter.currencyCode = "USD"
+                            
+                            self.usdLabel.text = formatter.string(from: NSNumber(value: json["USD"]!))
+                            
+                            formatter.currencyCode = "EUR"
+                            
+                            self.eurLabel.text = formatter.string(from: NSNumber(value: json["EUR"]!))
+                            
+                            formatter.currencyCode = "JPY"
+                            
+                            self.jpyLabel.text = formatter.string(from: NSNumber(value: json["JPY"]!))
                         }
                     }
                 }
@@ -43,6 +53,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func refreshTapped(_ sender: UIBarButtonItem) {
+        getPrice()
     }
     
 }
