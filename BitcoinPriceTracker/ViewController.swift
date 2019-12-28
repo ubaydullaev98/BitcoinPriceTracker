@@ -28,7 +28,11 @@ class ViewController: UIViewController {
             URLSession.shared.dataTask(with: url) { (data, response, error) in
                 if let data = data{
                     if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String:Double]{
-                        print(json)
+                        DispatchQueue.main.async {
+                            self.usdLabel.text = "$\(json["USD"]!)"
+                            self.eurLabel.text = "$\(json["EUR"]!)"
+                            self.jpyLabel.text = "$\(json["JPY"]!)"
+                        }
                     }
                 }
                 else{
@@ -38,6 +42,8 @@ class ViewController: UIViewController {
         }
     }
 
-
+    @IBAction func refreshTapped(_ sender: UIBarButtonItem) {
+    }
+    
 }
 
