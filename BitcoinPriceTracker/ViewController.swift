@@ -10,16 +10,26 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    
+    @IBOutlet weak var usdLabel: UILabel!
+    
+    @IBOutlet weak var eurLabel: UILabel!
+    
+    @IBOutlet weak var jpyLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        getPrice()
     }
     
     func getPrice(){
         if let url = URL(string: "https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=USD,JPY,EUR"){
             URLSession.shared.dataTask(with: url) { (data, response, error) in
                 if let data = data{
-                    print("It worked!")
+                    if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String:Double]{
+                        print(json)
+                    }
                 }
                 else{
                     print("Failed!")

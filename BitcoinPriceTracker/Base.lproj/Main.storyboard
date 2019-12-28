@@ -47,6 +47,11 @@
                     <navigationItem key="navigationItem" title="Bitcoin Price Tracker" id="kYP-sX-4nD">
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="rVG-EX-Mea"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="eurLabel" destination="6W5-hK-OdG" id="4rx-LO-FRR"/>
+                        <outlet property="jpyLabel" destination="9Zn-Gf-2m1" id="OdO-mC-rKH"/>
+                        <outlet property="usdLabel" destination="hx2-ld-BSs" id="CPG-rj-QdT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
